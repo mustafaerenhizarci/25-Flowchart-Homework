@@ -1,18 +1,16 @@
 ### Mustafa Eren Hızarcı
+
 ### Student Number: 2110213018
-
-
 
 # 25 Flowchart Homework
 
 I use the Flow Chart Visual Programming Language Windows Application for make these flowcharts because in this app you can run and test your flowchart
-in console.
+in console. **Or you can simply look screenshots folder in this repository**
 
 I made 23 flowcharts because I couldn't make someones.
 
 Question 22 and 24 are missing.
 
-You can download it from here: [Flowchart Visual Programming Language](https://gurkantuna.com/download/FlowChartVisualProgrammingLanguage301.rar)
-
+You can download it from here: [Flowchart Visual Programming Language](https://drive.google.com/file/d/1trKgr23QLZc89yfEtpfQ9H-EsG47yRX7/view?usp=sharing)
 
 ![Flow Chart Visual Programming Language Windows Application](./screenshot.png)
