@@ -16,10 +16,11 @@
  * ✅ 12-) Write the function and the main program that takes an Integer type one-dimensional array from the keyboard and returns the number of even numbers in the array.
  * ✅ 13-) Write a function in C to replace the spaces of a string with a specific character.
  * ✅ 14-) Write a function in C to print all perfect numbers in given range using the function.
- *    15-) Write a function in C to order alphabeticly the given 2 dimensional string array.
+ * ✅ 15-) Write a function in C to order alphabeticly the given 2 dimensional string array.
  * ✅ 16-) Write a function ic C to reverse of a string.
- *
- *
+ * ✅ 17-) Write a function that adds a given element to an array in ascending order without changing the order of the array.
+ * ✅ 18-) Write the function that finds how many vowels are in the word sent by the user.
+ *  
  */
 
 #include <stdio.h>
@@ -40,17 +41,19 @@ void findDuplicates(int[], int);
 void repeatedChars(char[]);
 void replaceChar(char[]);
 void perfectBetween(int, int);
-int anagram(char[],char[]);
+int anagram(char[], char[]);
 void stringAlphabetic(char[]);
+void orderWords(char[5][50]);
+void vowels(char[]);
+void addToArray();
 
 int main(int argc, char const *argv[])
 {
-    int array[] = {1, 1, 31, 31, 31, 31, 31, 5, 6, 7};
-    char str1[] = "zxacbdfg";
+    int array[10] = {1, 2, 4, 5, 6, 7, 8, 9, 10};
+    char str1[] = "abc ";
     char str2[] = "dirty room";
 
-    stringAlphabetic(str1);
-
+   
 
     return 0;
 }
@@ -63,7 +66,6 @@ int printArray(int arr[], int size)
         printf("Array[%d] = %d\n", i, arr[i]);
     }
 }
-
 
 // Question Functions
 
@@ -293,9 +295,10 @@ void perfectBetween(int start, int end)
     }
 }
 
-int anagram(char str1[],char str2[]) {
-    int f[256] = {0},s[256] = {0};
-    int i = 0,j = 0;
+int anagram(char str1[], char str2[])
+{
+    int f[256] = {0}, s[256] = {0};
+    int i = 0, j = 0;
 
     while (str1[i] != '\0')
     {
@@ -312,29 +315,103 @@ int anagram(char str1[],char str2[]) {
     for (int x = 0; x < 256; x++)
     {
         if (f[x] != s[x])
-            return 0; 
+            return 0;
     }
-    
-    return 1;
 
+    return 1;
 }
 
-void stringAlphabetic(char str[]) {
+void stringAlphabetic(char str[])
+{
 
     char temp;
-    
-    for (int i = 0; i < strlen(str) - 1; i++)
-    {
-        for (int a = 0; a < strlen(str) -1; a++)
+
+    printf("Before: \"%s\"\n", str);
+
+    for (int i = 0; i < strlen(str); i++)
+        for (int a = 0; a < strlen(str) - 1; a++)
         {
-            if (str[a] < str[a+1]) {
-                temp = str[a];
-                str[a+1] = str[a];
+            if (str[a] > str[a + 1])
+            {
+                temp = str[a + 1];
+                str[a + 1] = str[a];
                 str[a] = temp;
             }
         }
-    }
-    
 
-    puts(str);
+    printf("After:  \"%s\"\n", str);
+}
+
+void orderWords(char str[5][50])
+{
+    int i = 0;
+    char temp[50];
+    printf("Enter Words: \n");
+    while (i < 5)
+        gets(str[i++]);
+
+    for (int i = 0; i < 5; i++)
+        for (int a = 0; a < 4; a++)
+            if (strcmp(str[a], str[a + 1]) > 0)
+            {
+                strcpy(temp, str[a]);
+                strcpy(str[a], str[a + 1]);
+                strcpy(str[a + 1], temp);
+            }
+
+    printf("\nOrdered: \n");
+    for (int i = 0; i < 5; i++)
+        puts(str[i]);
+}
+
+void vowels(char str[])
+{
+    char vowels[] = "aeıioöuü";
+    int v = 0, w = 0;
+    int i = 0;
+
+    while (str[i] != '\0')
+    {
+
+        for (int a = 0; a < 8; a++)
+        {
+            if (str[i] == vowels[a])
+                v++;
+            else if (str[i] == 32)
+                w++;
+            break;
+        }
+
+        i++;
+    }
+
+    int c = strlen(str) - v - w;
+    printf("Vowels: %d\nWhitespaces: %d\nConsonants:%d", v, w, c);
+}
+
+void addToArray()
+{
+    int arr[20] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = 10, n, temp;
+
+    printf("Array Before: \n");
+    printArray(arr, size);
+
+    printf("Enter a number to add array: ");
+    scanf("%d", &n);
+
+    arr[size++] = n;
+
+    // Sort Again
+    for (int i = 0; i < size; i++)
+        for (int a = 0; a < size - 1; a++)
+            if (arr[a + 1] < arr[a])
+            {
+                temp = arr[a];
+                arr[a] = arr[a + 1];
+                arr[a + 1] = temp;
+            }
+
+    printf("Array After: \n");
+    printArray(arr, size);
 }
