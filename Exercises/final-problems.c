@@ -49,12 +49,7 @@ void addToArray();
 
 int main(int argc, char const *argv[])
 {
-    int array[10] = {1, 2, 4, 5, 6, 7, 8, 9, 10};
-    char str1[] = "abc ";
-    char str2[] = "dirty room";
-
-   
-
+    addToArray();
     return 0;
 }
 

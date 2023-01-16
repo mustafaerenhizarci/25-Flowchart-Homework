@@ -5,11 +5,14 @@ int strLength(char[]);
 void strReverse(char[], int);
 void question1();
 void question2();
+void question3();
 void question4();
+int strl(char[]);
+int fonk(char, char[], int, int[]);
 
 int main(int argc, char const *argv[])
 {
-    question2();
+    question3();
     return 0;
 }
 
@@ -96,8 +99,35 @@ void question2()
     printf("\nMax ID: %d\nMax Average: %d", maxId, maxAverage / 3);
 }
 
-void question3() {
-    
+void question3()
+{
+
+    char str1[80], chr[80];
+
+    int n, i, x, ctr[80];
+    printf("Enter your student number: ");
+
+    scanf("%s", str1);
+
+    n = strl(str1);
+    chr[0] = str1[0];
+    ctr[0] = 1;
+    x = 0;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (!fonk(str1[i], chr, x, ctr))
+        {
+            x++;
+            chr[x] = str1[i];
+            ctr[x] = 1;
+        }
+    }
+
+    for (int i = 0; i <= x; i++)
+    {
+        printf("%c\t%d\n", chr[i], ctr[i]);
+    }
 }
 
 void question4()
@@ -106,4 +136,30 @@ void question4()
     printf("Length of string: %d\nReverse Of String: ", strLength(str));
     strReverse(str, strLength(str));
     puts(str);
+}
+
+int strl(char str2[])
+{
+    int i, k = 0;
+    while (str2[k] != '\0')
+    {
+        k++;
+    }
+
+    return k;
+}
+int fonk(char c, char p[], int x, int y[])
+{
+    int i;
+    for (int i = 0; i <= x; i++)
+    {
+        if (p[i] == c)
+        {
+            y[i]++;
+            return 1;
+        }
+    }
+
+    if (i > x)
+        return 0;
 }
